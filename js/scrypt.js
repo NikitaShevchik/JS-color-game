@@ -1,8 +1,11 @@
 "use strict"
 const mainBoard = document.querySelector('.items')
 
-let rows = 4;
-let cols = 4;
+let rows = 5;
+let cols = 15;
+
+let rowsHard = 8; // усложненный уровень
+let colsHard = 8; // усложненный уровень
 
 //<div class="color__item"></div>
 // красный, синий, зеленый
@@ -34,3 +37,4 @@ function generationBoard(row, col, colorArr) {
 }
 generationBoard(rows, cols, colors)
 
+// ахахахахахах я перепутал колонки и ряды, Никита из завтра - исправить!!!
