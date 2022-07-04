@@ -1,0 +1,33 @@
+// Обнуление стилей
+@import "nullstyle.scss";
+// Подключение шрифтов
+
+//SCSS
+
+.header {
+}
+.main {
+		&__color {
+		}
+}
+.content {
+    padding: 50px 0;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.color {
+
+		&__game {
+		}
+
+		&__items {
+		}
+
+		&__item {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            text-align: center;
+            font-weight: bold;
+		}
+}
