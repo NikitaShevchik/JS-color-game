@@ -79,10 +79,48 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
 }
 
-.color__item {
+.color__items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.items__cols {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.items__item {
   width: 50px;
   height: 50px;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.3);
   text-align: center;
   font-weight: bold;
+}
+
+.red {
+  background-color: #ff4848;
+}
+
+.green {
+  background-color: #5fff5f;
+}
+
+.blue {
+  background-color: #7e7eff;
 }
