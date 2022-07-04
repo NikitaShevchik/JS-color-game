@@ -1,16 +1,18 @@
 "use strict"
 const mainBoard = document.querySelector('.items')
 
-let rows = 3;
-let cols = 3;
+let rows = 4;
+let cols = 4;
 
 //<div class="color__item"></div>
 // красный, синий, зеленый
 
 let colors = ['red', 'green', 'blue']
-var lastColorsIndex = colors.length - 1;
+let colorsHard = ['red', 'green', 'blue', 'yellow', 'black', 'purple', 'orange'] // усложненный уровень
+var lastColorsArrayIndex = 0;
 
-function generationBoard(row, col) {
+// Генератор игрового поля. Ряды, колонки, массив цветов
+function generationBoard(row, col, colorArr) {
     for (let i = 0; i < col; i++) {
         mainBoard.innerHTML += `<div class="items__cols"></div>`
     }
@@ -20,14 +22,15 @@ function generationBoard(row, col) {
             k.innerHTML += `<div class="items__item"></div>`
         }
     }
-    function randomColor() {
+    function randomColor(cA) {
+        lastColorsArrayIndex = cA.length - 1;
         const allItems = document.querySelectorAll('.items__item');
-        for (let item of allItems){
-            var randomNumber = (Math.random()*lastColorsIndex).toFixed(0);
-            item.classList.add(colors[randomNumber])
+        for (let item of allItems) {
+            var randomNumber = (Math.random() * lastColorsArrayIndex).toFixed(0);
+            item.classList.add(cA[randomNumber])
         }
     }
-    randomColor()
+    randomColor(colorArr)
 }
-generationBoard(rows, cols)
+generationBoard(rows, cols, colors)
 
