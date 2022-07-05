@@ -15,15 +15,66 @@
 </head>
 
 <body>
-	<header class="header"></header>
+	<header class="header">
+		<div class="content">
+			<div class="header__title">
+				Цветная лихорадка
+			</div>
+			<div class="header__body">
+				<div class="header__text"> Добро пожаловать в игру "Цветная лихорадка"! Ваша задача - окрасить квадратик
+					в один цвет. Постарайтесь сделать это как можно быстрее.</div>
+				<div class="header__rules">Правила</div>
+			</div>
+		</div>
+	</header>
 	<main class="main">
 		<div class="content">
 			<div class="main__color">
-				<div class="color__game"></div>
+				<div class="color__game">
+					<div class="color__title">Схема цветов в раунде:</div>
+					<div class="color__text">
+						<!-- <p class="red"></p>
+						<span>&#8594;</span>
+						<p class="green"></p>
+						<span>&#8594;</span>
+						<p class="blue"></p> -->
+					</div>
+				</div>
 				<div class="color__items items"></div>
+				<div class="main__button"></div>
 			</div>
 		</div>
 	</main>
+	<div class="popup _close">
+		<div class="popup__body">
+			<div class="popup__content">
+				<div class="popup__title">Правила игры</div>
+				<div class="popup__item">
+					<div class="popup__text"><b>1.</b> Суть игры - закрыть большой квадратик! Для этого <b>кликайте</b>
+						по маленьким
+						квадратикам и их цвет будет изменяться. Изменение цвета зависит от выбранного уровня. Но вы
+						всегда сможете подсмотреть последовательность цветов <b>над игровым полем.</b></div>
+					<div class="popup__screen"><img src="img/rules/1.png" alt=""></div>
+				</div>
+				<div class="popup__item">
+					<div class="popup__screen"><img src="img/rules/2.png" alt=""></div>
+					<div class="popup__text"><b>2.</b> Если вы играете на результат, то помните - <b>время не
+							ограничено!</b> Однако
+						вам нужно
+						следить за количеством ваших кликов. Каждая смена цвета у квадратика - один клик. Чем меньше
+						кликов - тем лучше. <b>Старайтесь подумать</b> какие цвета нужно закрывать, а какие нет.</div>
+				</div>
+				<div class="popup__item">
+					<div class="popup__text"><b>3.</b> Ваша цель - <b>получить медальку!</b> Она дается лучшим из лучших. На
+						каждой
+						сложности свои медали и <b>количество кликов</b>, которое нужно набрать чтобы получить ее. Получится ли
+						у вас забрать золотую медаль на всех уровнях?</div>
+					<div class="popup__screen"><img src="img/rules/3.png" alt=""></div>
+				</div>
+				<div class="popup__cross"></div>
+			</div>
+		</div>
+	</div>
 	<script src="js/scrypt.js"></script>
 </body>
 

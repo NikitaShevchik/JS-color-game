@@ -1,24 +1,109 @@
 // Обнуление стилей
 @import "nullstyle.scss";
 // Подключение шрифтов
-
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap');
 //SCSS
 
-.header {
+body{
+    background: rgb(225,236,255);
+    background: linear-gradient(0deg, rgba(225,236,255,1) 0%, rgba(176,213,255,1) 47%, rgba(103,161,255,1) 100%);    
 }
+.header {
+    &__title {
+        font-family: 'Pacifico', cursive;
+        font-size: 40px;
+        padding: 25px 0 20px 0;
+    }
+
+    &__body {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    &__text {
+        padding: 0 20px;
+        max-width: 700px;
+        line-height: 1.4;
+        font-size: 16px;
+        color: #fff;
+    }
+
+    &__rules {
+        display: inline-block;
+        cursor: help;
+        color: #fff;
+        text-decoration: underline;
+        &:hover{
+            color: rgb(0, 0, 255);
+        }
+    }
+}
+
 .main {
 		&__color {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
 		}
+        &__button{
+            transition: all 1s linear;
+            position: relative;
+            bottom: 30px;
+            animation: opacity 1s linear;
+        }
+}
+@keyframes opacity {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 .content {
-    padding: 50px 0;
+    font-family: 'Roboto', sans-serif;
+    padding: 0 0 20px 0;
     max-width: 1000px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .color {
-
 		&__game {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 0 0 0;
 		}
+        &__text{
+            padding: 0 0 20px 0;
+            display: flex;
+            font-size: 16px;
+            flex-direction: row;
+            align-items: center;
+            p{
+                width: 20px;
+                height: 20px;
+                border-radius: 20%;
+            }
+            span{
+                padding: 0 3px;
+                user-select: none;
+            }
+
+        }
+        &__title{
+            color: #fff;
+            font-size: 16px;
+            padding: 0 0 5px 0;
+        }
 
 		&__items {
             display: flex;
@@ -29,20 +114,66 @@
 
 		&__item {
 		}
+        &__button{
+            background-color: rgb(255, 196, 0);
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
 }
 
 .items {
+    transition: all 1s linear;
     &__cols {
         display: flex;
         flex-direction: row;
     }
     &__item {
+    transition: border 1s linear;
     width: 50px;
     height: 50px;
     border: 1px solid rgba(0, 0, 0, 0.3);
     text-align: center;
-    font-weight: bold;
     cursor: pointer;
+
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.22 );
+    backdrop-filter: blur( 10.5px );
+    -webkit-backdrop-filter: blur( 10.5px );
+    border-radius: 3px;
+    border: 1px solid rgba( 255, 255, 255, 0.38 );
+    }
+}
+
+.items__item._disapear{
+    animation: disapear 30s linear infinite;
+}
+@keyframes disapear {
+    0%{
+        opacity: 1;
+    }
+    30%{
+        opacity: 0;
+    }
+    80%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+
+.items._win{
+    position: relative;
+    opacity: 0.9;
+    transition: all 1s linear;
+    transform: scale(0.8);
+    bottom: 30px;
+    .items__item{
+        transition: border 1s linear;
+        border: 1px solid rgba( 255, 255, 255, 0);
     }
 }
 
@@ -67,4 +198,100 @@
 }
 .orange{
     background-color: rgb(255, 178, 126);
+}
+.popup {
+    transition: all 2s linear;
+    opacity: 1;
+    background: rgba( 255, 255, 255, 0.25 );
+    backdrop-filter: blur( 11.5px );
+    -webkit-backdrop-filter: blur( 11.5px );
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 20;
+    font-family: 'Open Sans', sans-serif;
+    &__body {
+        max-width: 820px;
+        max-height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.17 );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+    }
+    &__content {
+        margin: 0 auto;
+        padding: 40px;
+        position: relative;
+    }
+    &__cross {
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        &::after, &::before{
+            content: "";
+            width: 25px;
+            height: 1px;
+            background-color: red;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(0, -50%);
+        }
+        &::before{
+            transform: rotate(45deg);
+        }
+        &::after{
+            transform: rotate(-45deg);
+        }
+    }
+    &__title {
+        text-align: center;
+        font-size: 25px;
+        padding: 0 0 20px 0;
+    }
+    &__text {
+        text-align: justify;
+        padding: 0 0 25px 0;
+        line-height: 1.2;
+        flex: 1 1 70%;
+        padding: 0 40px 0 0;
+        font-size: 20px;
+        &:nth-child(2){
+            padding: 0 0 0 40px;
+        }
+    }
+    &__item {
+        display: flex;
+        flex-direction: row;
+        padding: 0 0 20px 0;
+        align-items: center;
+    }
+
+    &__screen {
+        flex: 1 1 30%;
+        width: 50%;
+        height: 100%;
+        
+        box-shadow: 0 0 5px 7px #cadcf9;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            
+        }
+    }
+}
+
+.popup._close{
+    display: none;
+    transition: all 2s linear 0s;
 }

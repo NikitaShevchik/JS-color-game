@@ -1,8 +1,14 @@
 "use strict"
-const mainBoard = document.querySelector('.items')
+const mainBoard = document.querySelector('.items');
+const colorTextScheme = document.querySelector('.color__text');
+const boardTitle = document.querySelector('.color__title');
+const finalButtonArea = document.querySelector('.main__button');
+const popup = document.querySelector('.popup');
+const popupCross = document.querySelector('.popup__cross');
+const popupRules = document.querySelector('.header__rules');
 
-let rows = 3;
-let cols = 3;
+let rows = 5;
+let cols = 5;
 
 let rowsHard = 8; // усложненный уровень
 let colsHard = 8; // усложненный уровень
@@ -43,33 +49,30 @@ function generationBoard(row, col, colorArr) {
         }
         /*------Смена цвета + проверка на победу------*/
         function changeColor(arr, target) {
-            for (let i = 0; i <= lastColorsArrayIndex; i++) {
-                if (target.classList.contains(arr[i])) {
-                    if (i < lastColorsArrayIndex) {
-                        target.classList.remove(arr[i]);
-                        target.classList.add(arr[i + 1])
-                    } else if (i == lastColorsArrayIndex) {
-                        target.classList.remove(arr[i]);
-                        i = 0;
-                        target.classList.add(arr[i]);
+            if (!mainBoard.classList.contains('_win')) {
+                for (let i = 0; i <= lastColorsArrayIndex; i++) {
+                    if (target.classList.contains(arr[i])) {
+                        if (i < lastColorsArrayIndex) {
+                            target.classList.remove(arr[i]);
+                            target.classList.add(arr[i + 1])
+                        } else if (i == lastColorsArrayIndex) {
+                            target.classList.remove(arr[i]);
+                            i = 0;
+                            target.classList.add(arr[i]);
+                        }
+                        break
                     }
-                    break
                 }
+                ifWin(target, colors)
+            } else {
+                target.classList.add('_disapear');
             }
-            ifWin(target, colors)
         }
     }
     randomColor(colorArr)
+    generatorScheme(colorArr)
     listenerForItems(colorArr)
 }
-
-
-
-
-generationBoard(rows, cols, colors) // запуск генерации. Ряды, колонки, массив цветов
-
-// ахахахахахах я перепутал колонки и ряды, Никита из завтра - исправить!!!
-// есть!
 
 /*------Проверка на победу. Засунуть функцию к клику----*/
 function ifWin(t, arr) {
@@ -90,9 +93,41 @@ function ifWin(t, arr) {
     }
     if (win) {
         clicks++;
-        console.log('ПОБЕДА', clicks, 'кликов')
+        mainBoard.classList.add('_win');
+        winGame();
     } else {
         clicks++;
     }
 }
+/*------Генератор правил расположения цветов----*/
+function generatorScheme(colors) {
+    //colorTextScheme
+    for (let k of colors) {
+        if (colors.indexOf(k) < lastColorsArrayIndex) {
+            colorTextScheme.innerHTML += `<p class="${k}"></p><span>&#8594;</span>`
+        } else if (colors.indexOf(k) == lastColorsArrayIndex) {
+            colorTextScheme.innerHTML += `<p class="${k}"></p>`
+        }
+    }
+}
+/*------Победная функция----*/
+function winGame() {
+    if (mainBoard.classList.contains('_win')) {
+        boardTitle.innerHTML = `Вы победили!`
+        colorTextScheme.innerHTML = `Вы справиились за ${clicks} кликов!`
+        finalButtonArea.innerHTML = `<button class="color__button">Играть заново</button>`
+        document.querySelector('.color__button').addEventListener('click', () => location.reload())
+    }
+}
 
+generationBoard(rows, cols, colors) // запуск генерации. Ряды, колонки, массив цветов
+
+
+
+function welcomeBlock() {
+
+}
+
+
+popupRules.addEventListener('click', () => popup.classList.toggle('_close'))
+popupCross.addEventListener('click', () => popup.classList.toggle('_close'))
