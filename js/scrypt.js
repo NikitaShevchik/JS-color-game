@@ -1,34 +1,56 @@
 "use strict"
-const mainBoard = document.querySelector('.items');
+const mainBoard = document.querySelector('.color__items');
 const colorTextScheme = document.querySelector('.color__text');
 const boardTitle = document.querySelector('.color__title');
 const finalButtonArea = document.querySelector('.main__button');
-const popup = document.querySelector('.popup');
-const popupCross = document.querySelector('.popup__cross');
+const popups = document.querySelectorAll('.popup');
 const popupRules = document.querySelector('.header__rules');
+const popupAboutDifficulties = document.querySelector('.select__about');
 const clicksCounter = document.querySelector('.clicks__counter');
 const clicksArea = document.querySelector('.clicks');
 const rewardsArea = document.querySelector('.stars');
 
-
-let rows = 5;
-let cols = 5;
-let stars = [15, 25, 35]
-
-
-let rowsHard = 8; // усложненный уровень
-let colsHard = 8; // усложненный уровень
-
 var clicks = 0;
-//<div class="color__item"></div>
-// красный, синий, зеленый
-
-let colors = ['red', 'green', 'blue']
-let colorsHard = ['red', 'green', 'blue', 'yellow', 'black', 'purple', 'orange'] // усложненный уровень
 var lastColorsArrayIndex = 0;
 
+let gameModes = {
+    easy: {
+        rows: 5,
+        cols: 5,
+        colors: ['red', 'green', 'blue'],
+        stars: [20, 25, 40]
+    },
+    medium: {
+        rows: 7,
+        cols: 7,
+        colors: ['red', 'green', 'blue', 'yellow'],
+        stars: [50, 55, 60]
+    },
+    hard: {
+        rows: 8,
+        cols: 8,
+        colors: ['red', 'green', 'blue', 'yellow', 'purple'],
+        stars: [90, 105, 120]
+    },
+    ultraHard: {
+        rows: 10,
+        cols: 10,
+        colors: ['red', 'green', 'blue', 'yellow', 'black', 'purple', 'orange'],
+        stars: [140, 170, 200]
+    }
+}
 // Генератор игрового поля. Ряды, колонки, массив цветов
 function generationBoard(row, col, colorArr, starsArr) {
+    function changePage() {
+        const welcomePage = document.querySelector('.welcome');
+        const welcomeContent = welcomePage.querySelector('.content');
+        welcomeContent.classList.add('_hide')
+        const mainGame = document.querySelector('.main');
+        const mainGameContent = mainGame.querySelector('.content')
+        mainGameContent.classList.remove('_hide')
+        const headerText = document.querySelector('.header__text');
+        headerText.classList.add('_hide')
+    }
     for (let i = 0; i < row; i++) {
         mainBoard.innerHTML += `<div class="items__cols"></div>`
     }
@@ -79,6 +101,7 @@ function generationBoard(row, col, colorArr, starsArr) {
     generatorScheme(colorArr) // схема цветов
     listenerForItems(colorArr) // события кликов
     showClicksAndRewards(starsArr) // показать клики и награды
+    setTimeout(changePage, 500)
 }
 
 /*------Проверка на победу. Засунуть функцию к клику----*/
@@ -170,9 +193,9 @@ function rewardStar(starAr) {
     </div>`
     }
 }
-
-
-function welcomeBlock() {
+/*------Главная функция-----*/
+function main() {
+    popup()
     const dificultyButtons = document.querySelectorAll('.select__button');
     const startButton = document.querySelector('.items__button');
     for (let b of dificultyButtons) {
@@ -211,23 +234,27 @@ function welcomeBlock() {
     function startGame() {
         for (let b of dificultyButtons) {
             if (b.classList.contains('_selected')) {
-                if (b.id == 'easy') {
-
-                } else if (b.id == 'medium') {
-
-                } else if (b.id == 'hard') {
-
-                } else if (b.id == 'ultraHard') {
-
-                }
+                var mode = b.id;
+                generationBoard(gameModes[mode].rows, gameModes[mode].cols, gameModes[mode].colors, gameModes[mode].stars)
             }
         }
     }
 }
-welcomeBlock()
+main()
 
-//generationBoard(rows, cols, colors, stars) // запуск генерации. Ряды, колонки, массив цветов, награды
+function popup() {
+    for (let pop of popups) {
+        if (pop.id == 'rules') {
+            popupRules.addEventListener('click', () => pop.classList.toggle('_close'));
+            const popupCross = pop.querySelector('.popup__cross');
+            popupCross.addEventListener('click', () => pop.classList.toggle('_close'))
+        } else if (pop.id == 'dif') {
+            popupAboutDifficulties.addEventListener('click', () => pop.classList.toggle('_close'))
+            const popupCross = pop.querySelector('.popup__cross');
+            popupCross.addEventListener('click', () => pop.classList.toggle('_close'))
+        }
+    }
+}
 
+// popupRules.addEventListener('click', () => popup.classList.toggle('_close'))
 
-popupRules.addEventListener('click', () => popup.classList.toggle('_close'))
-popupCross.addEventListener('click', () => popup.classList.toggle('_close'))

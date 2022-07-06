@@ -41,6 +41,9 @@ body{
         }
     }
 }
+.header__text._hide{
+    display: none;
+}
 
 .main {
 		&__color {
@@ -362,17 +365,43 @@ body{
         flex: 1 1 30%;
         width: 50%;
         height: 100%;
-        
         box-shadow: 0 0 5px 7px #cadcf9;
         img{
             width: 100%;
             height: 100%;
             object-fit: cover;
-            
+            user-select: none;
         }
     }
 }
-
+.popup__body_w{
+    max-width: 900px;
+}
+.popup__content_row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+.popup__item_line{
+    flex-direction: column;
+    flex: 1 1 48%;
+    align-items: center;
+}
+.popup__screen_w{
+    padding: 10px 0 0 0;
+    width: 50%;
+    flex: 1 1 auto;
+    box-shadow: none;
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+.popup__text_line{
+    flex: 1 1 100%;
+}
 .popup._close{
     display: none;
     transition: all 2s linear 0s;
