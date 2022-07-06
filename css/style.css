@@ -84,6 +84,11 @@ body {
   font-family: 'Pacifico', cursive;
   font-size: 70px;
   padding: 25px 0 30px 0;
+  background: black;
+  background: -webkit-gradient(linear, left top, right top, from(black), to(#006180));
+  background: linear-gradient(90deg, black 0%, #006180 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .header__body {

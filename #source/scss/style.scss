@@ -5,13 +5,17 @@
 //SCSS
 body{
     background: rgb(225,236,255);
-    background: linear-gradient(0deg, rgba(225,236,255,1) 0%, rgba(176,213,255,1) 47%, rgba(103,161,255,1) 100%);    
+    background: linear-gradient(0deg, rgba(225,236,255,1) 0%, rgba(176,213,255,1) 47%, rgba(103,161,255,1) 100%);  
 }
 .header {
     &__title {
         font-family: 'Pacifico', cursive;
         font-size: 70px;
         padding: 25px 0 30px 0;
+        background: rgb(0,0,0);
+        background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,97,128,1) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;  
     }
     &__body {
         width: 100%;
@@ -37,7 +41,6 @@ body{
         }
     }
 }
-
 .header__text._hide{
     display: none;
 }
