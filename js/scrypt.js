@@ -6,9 +6,15 @@ const finalButtonArea = document.querySelector('.main__button');
 const popup = document.querySelector('.popup');
 const popupCross = document.querySelector('.popup__cross');
 const popupRules = document.querySelector('.header__rules');
+const clicksCounter = document.querySelector('.clicks__counter');
+const clicksArea = document.querySelector('.clicks');
+const rewardsArea = document.querySelector('.stars');
+
 
 let rows = 5;
 let cols = 5;
+let stars = [15, 25, 35]
+
 
 let rowsHard = 8; // усложненный уровень
 let colsHard = 8; // усложненный уровень
@@ -22,7 +28,7 @@ let colorsHard = ['red', 'green', 'blue', 'yellow', 'black', 'purple', 'orange']
 var lastColorsArrayIndex = 0;
 
 // Генератор игрового поля. Ряды, колонки, массив цветов
-function generationBoard(row, col, colorArr) {
+function generationBoard(row, col, colorArr, starsArr) {
     for (let i = 0; i < row; i++) {
         mainBoard.innerHTML += `<div class="items__cols"></div>`
     }
@@ -63,19 +69,20 @@ function generationBoard(row, col, colorArr) {
                         break
                     }
                 }
-                ifWin(target, colors)
+                ifWin(target, colors, starsArr)
             } else {
                 target.classList.add('_disapear');
             }
         }
     }
-    randomColor(colorArr)
-    generatorScheme(colorArr)
-    listenerForItems(colorArr)
+    randomColor(colorArr) // окраска
+    generatorScheme(colorArr) // схема цветов
+    listenerForItems(colorArr) // события кликов
+    showClicksAndRewards(starsArr) // показать клики и награды
 }
 
 /*------Проверка на победу. Засунуть функцию к клику----*/
-function ifWin(t, arr) {
+function ifWin(t, arr, starsAr) {
     const allItems = document.querySelectorAll('.items__item');
     var win = false;
     for (let i = 0; i <= lastColorsArrayIndex; i++) {
@@ -93,10 +100,12 @@ function ifWin(t, arr) {
     }
     if (win) {
         clicks++;
+        clicksCounter.innerHTML = clicks;
         mainBoard.classList.add('_win');
-        winGame();
+        winGame(starsAr);
     } else {
         clicks++;
+        clicksCounter.innerHTML = clicks;
     }
 }
 /*------Генератор правил расположения цветов----*/
@@ -111,22 +120,64 @@ function generatorScheme(colors) {
     }
 }
 /*------Победная функция----*/
-function winGame() {
+function winGame(starsAr) {
     if (mainBoard.classList.contains('_win')) {
-        boardTitle.innerHTML = `Вы победили!`
-        colorTextScheme.innerHTML = `Вы справиились за ${clicks} кликов!`
-        finalButtonArea.innerHTML = `<button class="color__button">Играть заново</button>`
-        document.querySelector('.color__button').addEventListener('click', () => location.reload())
+        boardTitle.innerHTML = `Вы победили!`;
+        colorTextScheme.innerHTML = `Вы справиились за ${clicks} кликов!`;
+        rewardStar(starsAr)
+        finalButtonArea.innerHTML += `<button class="color__button">Играть заново</button>`;
+        document.querySelector('.color__button').addEventListener('click', () => location.reload());
     }
 }
-
-generationBoard(rows, cols, colors) // запуск генерации. Ряды, колонки, массив цветов
-
+/*------Показ количества кликов и цели игры----*/
+function showClicksAndRewards(starArr) {
+    clicksArea.classList.remove('_hide')
+    rewardsArea.classList.remove('_hide')
+    const starsDescriptions = document.querySelectorAll('.stars__description');
+    var star = 0;
+    for (let s of starsDescriptions) {
+        s.innerHTML = `${starArr[star]} кликов`
+        star++;
+    }
+}
+/*------Смотрим какое место занят игрок----*/
+function rewardStar(starAr) {
+    if (clicks > starAr[2]) {
+        finalButtonArea.innerHTML = `<div class="main__rewarditem">
+        <div class="main__rewardstar"></div>
+        <div class="main__rewardtext">К сожалению, вы не получаете награду! Попробуйте еще раз!</div>
+    </div>`
+    } else if (clicks > starAr[1] && clicks <= starAr[2]) {
+        finalButtonArea.innerHTML = `<div class="main__rewarditem">
+        <div class="main__rewardstar">
+            <img src="/img/stars/3.png" class="main__star">
+        </div>
+        <div class="main__rewardtext">Вы занимаете 3 место! Вы молодец!</div>
+    </div>`
+    } else if (clicks > starAr[0] && clicks <= starAr[1]) {
+        finalButtonArea.innerHTML = `<div class="main__rewarditem">
+        <div class="main__rewardstar">
+            <img src="/img/stars/2.png" class="main__star">
+        </div>
+        <div class="main__rewardtext">Вы занимаете 2 место! Так держать!</div>
+    </div>`
+    } else if (clicks <= starAr[0]) {
+        finalButtonArea.innerHTML = `<div class="main__rewarditem">
+        <div class="main__rewardstar">
+            <img src="/img/stars/1.png" class="main__star">
+        </div>
+        <div class="main__rewardtext">Вы занимаете 1 место! Вы лучше всех!</div>
+    </div>`
+    }
+}
 
 
 function welcomeBlock() {
 
 }
+
+
+generationBoard(rows, cols, colors, stars) // запуск генерации. Ряды, колонки, массив цветов, награды
 
 
 popupRules.addEventListener('click', () => popup.classList.toggle('_close'))
