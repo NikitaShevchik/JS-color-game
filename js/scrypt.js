@@ -177,7 +177,7 @@ function welcomeBlock() {
 }
 
 
-generationBoard(rows, cols, colors, stars) // запуск генерации. Ряды, колонки, массив цветов, награды
+//generationBoard(rows, cols, colors, stars) // запуск генерации. Ряды, колонки, массив цветов, награды
 
 
 popupRules.addEventListener('click', () => popup.classList.toggle('_close'))
