@@ -173,9 +173,58 @@ function rewardStar(starAr) {
 
 
 function welcomeBlock() {
+    const dificultyButtons = document.querySelectorAll('.select__button');
+    const startButton = document.querySelector('.items__button');
+    for (let b of dificultyButtons) {
+        b.addEventListener('click', function (e) {
+            if (!e.target.classList.contains('_selected') && !e.target.classList.contains('_opacity')) {
+                for (let o of dificultyButtons) {
+                    o.classList.add('_opacity')
+                }
+                e.target.classList.remove('_opacity');
+                e.target.classList.add('_selected');
+            } else if (e.target.classList.contains('_selected')) {
+                for (let o of dificultyButtons) {
+                    o.classList.remove('_opacity');
+                }
+                e.target.classList.remove('_selected');
+            } else if (e.target.classList.contains('_opacity')) {
+                for (let o of dificultyButtons) {
+                    o.classList.remove('_opacity')
+                    o.classList.remove('_selected')
+                }
+            }
+            if (b.classList.contains('_selected')) {
+                startButton.classList.remove('_unavailable');
+            } else {
+                startButton.classList.add('_unavailable');
+            }
+        })
+    }
+    startButton.addEventListener('click', function (e) {
+        if (!startButton.classList.contains('_unavailable')) {
+            startGame()
+        } else {
+            e.preventDefault()
+        }
+    })
+    function startGame() {
+        for (let b of dificultyButtons) {
+            if (b.classList.contains('_selected')) {
+                if (b.id == 'easy') {
 
+                } else if (b.id == 'medium') {
+
+                } else if (b.id == 'hard') {
+
+                } else if (b.id == 'ultraHard') {
+
+                }
+            }
+        }
+    }
 }
-
+welcomeBlock()
 
 //generationBoard(rows, cols, colors, stars) // запуск генерации. Ряды, колонки, массив цветов, награды
 

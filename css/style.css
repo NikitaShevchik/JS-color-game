@@ -647,6 +647,17 @@ body {
   font-size: 25px;
 }
 
+.items__button {
+  background-color: white;
+  font-size: 16px;
+  padding: 5px 30px;
+  border-radius: 5px;
+}
+
+.items__button._unavailable {
+  opacity: 0.5;
+}
+
 .select {
   padding: 20px 0;
   display: -webkit-box;
@@ -679,15 +690,29 @@ body {
 }
 
 .select__button_r {
-  background-color: #ff5100;
+  background: red;
+  background: linear-gradient(16deg, red 0%, #ff7700 85%);
   color: #fff;
+}
+
+.select__button_l {
+  background-color: #d0ff00;
+}
+
+.select__button_h {
+  background-color: #ff8800;
 }
 
 .select__about {
   font-size: 25px;
-  color: #ffc400;
-  cursor: pointer;
-  margin: 0 0 0 5px;
+  width: 20px;
+  margin: 0 5px;
+  cursor: help;
+  text-align: center;
+}
+
+.select__about:hover {
+  text-decoration: underline;
 }
 
 .select__item_l {
@@ -699,6 +724,14 @@ body {
           align-items: center;
   max-width: 80%;
   margin: 0 0 0 30px;
+}
+
+.select__button._selected {
+  opacity: 1;
+}
+
+.select__button._opacity {
+  opacity: 0.4;
 }
 
 .red {

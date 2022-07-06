@@ -410,8 +410,14 @@ body{
     }
 
     &__button {
-        
+        background-color: rgb(255, 255, 255);
+        font-size: 16px;
+        padding: 5px 30px;
+        border-radius: 5px;
     }
+}
+.items__button._unavailable{
+    opacity: 0.5;
 }
 
 .select {
@@ -432,16 +438,27 @@ body{
         padding: 10px 20px;
         border-radius: 5px;
         &_r{
-            background-color: rgb(255, 81, 0);
+            background: rgb(255,0,0);
+            background: linear-gradient(16deg, rgba(255,0,0,1) 0%, rgba(255,119,0,1) 85%);
             color: #fff;
+        }
+        &_l{
+            background-color: rgb(208, 255, 0);
+        }
+        &_h{
+            background-color: rgb(255, 136, 0);
         }
     }
 
     &__about {
         font-size: 25px;
-        color: rgb(255, 196, 0);
-        cursor: pointer;
-        margin: 0 0 0 5px;
+        width: 20px;
+        margin: 0 5px;
+        cursor: help;
+        text-align: center;
+        &:hover{
+            text-decoration: underline;
+        }
     }
 }
 .select__item_l{
@@ -451,8 +468,12 @@ body{
     margin: 0 0 0 30px;
 }
 
-
-
+.select__button._selected{
+    opacity: 1;
+}
+.select__button._opacity{
+    opacity: 0.4;
+}
 
 
 
