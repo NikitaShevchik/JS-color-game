@@ -374,6 +374,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.38);
 }
 
+/*------Пасхалка на сайте----*/
 .items__item._disapear {
   -webkit-animation: disapear 30s linear infinite;
           animation: disapear 30s linear infinite;
@@ -496,6 +497,7 @@ body {
   display: none;
 }
 
+/*------Попапыч---*/
 .popup {
   -webkit-transition: all 2s linear;
   transition: all 2s linear;
@@ -794,6 +796,7 @@ body {
   opacity: 0.4;
 }
 
+/*------Цвета для квадратиков----*/
 .red {
   background-color: #ff4848;
 }

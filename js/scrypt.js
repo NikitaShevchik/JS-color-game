@@ -39,7 +39,7 @@ let gameModes = {
         stars: [140, 170, 200]
     }
 }
-// Генератор игрового поля. Ряды, колонки, массив цветов
+// Генератор игрового поля. Ряды, колонки, массив цветов, рейтинг звездочек
 function generationBoard(row, col, colorArr, starsArr) {
     function changePage() {
         const welcomePage = document.querySelector('.welcome');
@@ -101,7 +101,7 @@ function generationBoard(row, col, colorArr, starsArr) {
     generatorScheme(colorArr) // схема цветов
     listenerForItems(colorArr) // события кликов
     showClicksAndRewards(starsArr) // показать клики и награды
-    setTimeout(changePage, 500)
+    setTimeout(changePage, 500) // смена блоков, запуск игры
 }
 
 /*------Проверка на победу. Засунуть функцию к клику----*/
@@ -240,8 +240,7 @@ function main() {
         }
     }
 }
-main()
-
+/*------Функция для попапчиков----*/
 function popup() {
     for (let pop of popups) {
         if (pop.id == 'rules') {
@@ -256,5 +255,5 @@ function popup() {
     }
 }
 
-// popupRules.addEventListener('click', () => popup.classList.toggle('_close'))
-
+/*------Запуск глав-функции----*/
+main()
