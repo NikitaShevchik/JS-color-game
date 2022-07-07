@@ -173,21 +173,21 @@ function rewardStar(starAr) {
     } else if (clicks > starAr[1] && clicks <= starAr[2]) {
         finalButtonArea.innerHTML = `<div class="main__rewarditem">
         <div class="main__rewardstar">
-            <img src="/img/stars/3.png" class="main__star">
+            <img src="img/stars/3.png" class="main__star">
         </div>
         <div class="main__rewardtext">Вы занимаете 3 место! Вы молодец!</div>
     </div>`
     } else if (clicks > starAr[0] && clicks <= starAr[1]) {
         finalButtonArea.innerHTML = `<div class="main__rewarditem">
         <div class="main__rewardstar">
-            <img src="/img/stars/2.png" class="main__star">
+            <img src="img/stars/2.png" class="main__star">
         </div>
         <div class="main__rewardtext">Вы занимаете 2 место! Так держать!</div>
     </div>`
     } else if (clicks <= starAr[0]) {
         finalButtonArea.innerHTML = `<div class="main__rewarditem">
         <div class="main__rewardstar">
-            <img src="/img/stars/1.png" class="main__star">
+            <img src="img/stars/1.png" class="main__star">
         </div>
         <div class="main__rewardtext">Вы занимаете 1 место! Вы лучше всех!</div>
     </div>`
